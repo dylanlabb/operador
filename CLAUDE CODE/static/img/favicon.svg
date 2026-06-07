@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Fondo blanco -->
+  <circle cx="50" cy="50" r="50" fill="white"/>
+
+  <!-- Hoja oscura (izquierda, gris-verde) -->
+  <path d="M50 52 C46 40 30 28 20 35 C12 41 16 60 28 66 C40 72 52 62 50 52Z" fill="#4A4E3A"/>
+
+  <!-- Hoja verde brillante (derecha) -->
+  <path d="M50 48 C54 60 70 72 80 65 C88 59 84 40 72 34 C60 28 48 38 50 48Z" fill="#78C33A"/>
+
+  <!-- Anillo exterior verde -->
+  <circle cx="50" cy="50" r="44" fill="none" stroke="#78C33A" stroke-width="5.5"/>
+</svg>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Operador de Residuos S.A.C. — Gestión integral de residuos y venta de envases industriales de segunda mano en Lima, Perú.">
+  <meta name="robots" content="index, follow">
+  <meta name="geo.region" content="PE-CAL">
+  <meta name="geo.placename" content="Ventanilla, Callao">
+  <meta name="theme-color" content="#1B5E20">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.operadorderesiduos.com.pe/">
+  <meta property="og:title" content="{% block og_title %}Operador de Residuos S.A.C. — Gestión de Residuos y Envases Industriales{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}Operadores autorizados de residuos en Lima. Compramos y vendemos tanques IBC, cilindros y bidones de segunda mano para uso industrial. Atendemos empresas en todo el Perú.{% endblock %}">
+  <meta property="og:site_name" content="Operador de Residuos SAC">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://www.operadorderesiduos.com.pe{% block canonical_path %}/{% endblock %}">
+
+  <title>{% block title %}Operador de Residuos S.A.C.{% endblock %}</title>
+
+  <!-- Preload fuentes críticas -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='img/favicon.svg') }}">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}" sizes="32x32">
+  <link rel="apple-touch-icon" href="{{ url_for('static', filename='img/favicon.png') }}">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+  <!-- JSON-LD: Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Operador de Residuos S.A.C.",
+    "url": "https://www.operadorderesiduos.com.pe",
+    "logo": "https://www.operadorderesiduos.com.pe/static/img/logo.svg",
+    "email": "ventas@operadorderesiduos.com.pe",
+    "telephone": "+51994229729",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "MZ E2 Lote 03, Parque Industrial Pachacutec",
+      "addressLocality": "Ventanilla",
+      "addressRegion": "Callao",
+      "addressCountry": "PE"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+51994229729",
+      "contactType": "sales",
+      "availableLanguage": "Spanish"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="{{ url_for('index') }}">
+        <img src="{{ url_for('static', filename='img/logo.svg') }}"
+             alt="Logo Operador de Residuos S.A.C."
+             class="navbar-logo-img">
+        <span class="navbar-brand-text">Operador de Residuos <strong>SAC</strong></span>
+      </a>
+      <button class="navbar-toggler border-0" type="button"
+              data-bs-toggle="collapse" data-bs-target="#navMenu"
+              aria-controls="navMenu" aria-expanded="false"
+              aria-label="Abrir menú de navegación">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item">
+            <a class="nav-link {% if request.endpoint == 'index' %}active{% endif %}"
+               href="{{ url_for('index') }}">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.endpoint == 'nosotros' %}active{% endif %}"
+               href="{{ url_for('nosotros') }}">Nosotros</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.endpoint == 'servicios' %}active{% endif %}"
+               href="{{ url_for('servicios') }}">Servicios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.endpoint == 'productos' %}active{% endif %}"
+               href="{{ url_for('productos') }}">Productos</a>
+          </li>
+          <li class="nav-item ms-lg-2">
+            <a class="nav-link btn btn-success px-4 text-white {% if request.endpoint == 'contacto' %}active{% endif %}"
+               href="{{ url_for('contacto') }}">
+              <i class="bi bi-envelope me-1" aria-hidden="true"></i> Contáctanos
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <main role="main">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer-dark py-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <img src="{{ url_for('static', filename='img/logo.svg') }}"
+                 alt="Logo Operador de Residuos S.A.C."
+                 class="footer-logo-img">
+            <h5 class="footer-heading mb-0">Operador de Residuos SAC</h5>
+          </div>
+          <p class="footer-text small">
+            Empresa especializada en gestión integral de residuos industriales y
+            comercialización de envases plásticos y metálicos de segunda mano para uso industrial.
+          </p>
+          <div class="d-flex gap-3 mt-3">
+            <a href="https://wa.me/51994229729" class="footer-social footer-social--wa"
+               title="WhatsApp" target="_blank" aria-label="Contáctanos por WhatsApp">
+              <i class="bi bi-whatsapp" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <h6 class="footer-heading mb-3">Contacto</h6>
+          <ul class="list-unstyled footer-list">
+            <li class="mb-2">
+              <i class="bi bi-geo-alt-fill text-success me-2" aria-hidden="true"></i>
+              Parque Industrial Pachacutec, MZ E2 Lote 03<br>
+              <span class="ms-4">Ventanilla, Callao, Lima</span>
+            </li>
+            <li class="mb-2"><i class="bi bi-envelope-fill text-success me-2" aria-hidden="true"></i>ventas@operadorderesiduos.com.pe</li>
+            <li class="mb-2"><i class="bi bi-whatsapp text-success me-2" aria-hidden="true"></i>+51 994 229 729</li>
+            <li class="mb-2"><i class="bi bi-clock-fill text-success me-2" aria-hidden="true"></i>Lun–Vie 8:00am – 6:00pm</li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-6">
+          <h6 class="footer-heading mb-3">Servicios</h6>
+          <ul class="list-unstyled footer-list">
+            <li class="mb-1"><a href="{{ url_for('servicios') }}" class="footer-link">Gestión de Residuos</a></li>
+            <li class="mb-1"><a href="{{ url_for('servicios') }}" class="footer-link">Transporte</a></li>
+            <li class="mb-1"><a href="{{ url_for('servicios') }}" class="footer-link">Disposición Final</a></li>
+            <li class="mb-1"><a href="{{ url_for('servicios') }}" class="footer-link">Compra de Residuos</a></li>
+            <li class="mb-1">
+              <a href="https://www.minam.gob.pe" class="footer-link" target="_blank" rel="noopener">
+                Normativa OEFA / MINAM <i class="bi bi-box-arrow-up-right ms-1" style="font-size:0.65rem;" aria-hidden="true"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-6">
+          <h6 class="footer-heading mb-3">Productos</h6>
+          <ul class="list-unstyled footer-list">
+            <li class="mb-1"><a href="{{ url_for('productos', categoria='tanques') }}" class="footer-link">Tanques MX</a></li>
+            <li class="mb-1"><a href="{{ url_for('productos', categoria='plastico') }}" class="footer-link">Cilindros Plástico</a></li>
+            <li class="mb-1"><a href="{{ url_for('productos', categoria='metal') }}" class="footer-link">Cilindros Metal</a></li>
+            <li class="mb-1"><a href="{{ url_for('productos', categoria='bidones') }}" class="footer-link">Bidones y Otros</a></li>
+            <li class="mb-1"><a href="{{ url_for('productos') }}" class="footer-link">Ver todos</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- CTA último recurso -->
+      <div class="footer-cta-strip mt-4 py-3 px-4 rounded-3 d-flex align-items-center justify-content-between flex-wrap gap-3">
+        <p class="mb-0 small" style="color:rgba(255,255,255,0.75);">
+          <i class="bi bi-chat-dots-fill text-success me-2" aria-hidden="true"></i>
+          ¿Tienes dudas? Escríbenos ahora
+        </p>
+        <a href="https://wa.me/51994229729?text=Hola%2C%20tengo%20una%20consulta%20sobre%20sus%20servicios."
+           class="btn btn-success btn-sm px-4" target="_blank">
+          <i class="bi bi-whatsapp me-2" aria-hidden="true"></i>+51 994 229 729
+        </a>
+      </div>
+
+      <!-- Franja certificación EO-RS -->
+      <div class="footer-cert-strip mt-3 py-2 px-4 rounded-3 d-flex align-items-center gap-2 flex-wrap">
+        <i class="bi bi-shield-fill-check text-success" aria-hidden="true"></i>
+        <span class="small" style="color:rgba(255,255,255,0.55);">
+          Empresa Operadora de Residuos Sólidos registrada ante el MINAM
+          <!-- TODO: agregar N° de registro EO-RS -->
+        </span>
+      </div>
+
+      <hr class="footer-divider mt-4">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-center footer-bottom">
+        <p class="mb-0">&copy; 2026 Operador de Residuos S.A.C. — RUC: 20478095253</p>
+        <p class="mb-0 mt-2 mt-md-0">Ventanilla, Callao — Lima, Perú</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP FLOTANTE -->
+  <a href="https://wa.me/51994229729?text=Hola%2C%20me%20interesa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20productos%20y%20servicios."
+     class="whatsapp-float" target="_blank" title="Escríbenos por WhatsApp"
+     aria-label="Escríbenos por WhatsApp">
+    <i class="bi bi-whatsapp" aria-hidden="true"></i>
+    <span class="whatsapp-float__label">WhatsApp</span>
+  </a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

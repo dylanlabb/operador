@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+
+{% block title %}Servicios — Operador de Residuos S.A.C.{% endblock %}
+
+{% block content %}
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ url_for('index') }}" class="text-white-75">Inicio</a></li>
+        <li class="breadcrumb-item active text-white">Servicios</li>
+      </ol>
+    </nav>
+    <h1 class="fw-bold text-white mb-2">Nuestros Servicios</h1>
+    <p class="text-white-75 mb-0">Gestión integral de residuos industriales y comerciales en Lima, Perú.</p>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        <p class="lead text-muted">
+          Somos operadores de residuos autorizados. Gestionamos tus residuos industriales con total
+          cumplimiento de la <strong>Ley N° 1278 — Ley de Gestión Integral de Residuos Sólidos</strong>
+          y sus reglamentos, emitiendo toda la documentación requerida por OEFA y MINAM.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS DETALLADOS -->
+<section class="py-6">
+  <div class="container">
+    {% for servicio in servicios %}
+    <div class="row align-items-center g-5 mb-6 {% if loop.index is even %}flex-lg-row-reverse{% endif %}">
+      <div class="col-lg-5 text-center">
+        <div class="service-icon-large">
+          <i class="bi {{ servicio.icono }}"></i>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <span class="section-label">Servicio 0{{ loop.index }}</span>
+        <h3 class="fw-bold mt-2 mb-3">{{ servicio.titulo }}</h3>
+        <p class="text-muted mb-3">{{ servicio.descripcion }}</p>
+        <p class="text-muted small mb-4">{{ servicio.detalle }}</p>
+        <a href="{{ url_for('contacto') }}" class="btn btn-success px-4">
+          <i class="bi bi-chat-dots me-2"></i>Solicitar este servicio
+        </a>
+      </div>
+    </div>
+    {% if not loop.last %}<hr class="my-5">{% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+<!-- NORMATIVA -->
+<section class="py-6 bg-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-label">Cumplimiento legal</span>
+      <h2 class="fw-bold mt-2">Marco Normativo</h2>
+      <p class="text-muted">Operamos bajo la normativa ambiental peruana vigente.</p>
+    </div>
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-5">
+        <div class="norm-card p-4 h-100">
+          <i class="bi bi-file-earmark-text text-success fs-3 mb-3"></i>
+          <h6 class="fw-bold">Ley N° 1278</h6>
+          <p class="text-muted small mb-0">Ley de Gestión Integral de Residuos Sólidos y su Reglamento (D.S. N° 014-2017-MINAM).</p>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="norm-card p-4 h-100">
+          <i class="bi bi-building text-success fs-3 mb-3"></i>
+          <h6 class="fw-bold">OEFA / MINAM</h6>
+          <p class="text-muted small mb-0">Supervisados por el Organismo de Evaluación y Fiscalización Ambiental y el Ministerio del Ambiente.</p>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="norm-card p-4 h-100">
+          <i class="bi bi-file-earmark-check text-success fs-3 mb-3"></i>
+          <h6 class="fw-bold">Manifiestos de Manejo</h6>
+          <p class="text-muted small mb-0">Emitimos manifiestos de manejo de residuos sólidos peligrosos y no peligrosos para cada operación.</p>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="norm-card p-4 h-100">
+          <i class="bi bi-patch-check text-success fs-3 mb-3"></i>
+          <h6 class="fw-bold">Certificados de Disposición</h6>
+          <p class="text-muted small mb-0">Certificamos la disposición final de los residuos, dando trazabilidad completa a tu empresa.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section class="py-6">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-label">Cómo trabajamos</span>
+      <h2 class="fw-bold mt-2">Nuestro Proceso</h2>
+    </div>
+    <div class="row g-0 justify-content-center">
+      <div class="col-lg-10">
+        <div class="process-steps">
+          <div class="process-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h6 class="fw-bold mb-1">Evaluación</h6>
+              <p class="text-muted small mb-0">Evaluamos el tipo y volumen de residuos o envases que gestionaremos.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h6 class="fw-bold mb-1">Cotización</h6>
+              <p class="text-muted small mb-0">Te enviamos una propuesta económica sin costo y sin compromiso.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h6 class="fw-bold mb-1">Recojo</h6>
+              <p class="text-muted small mb-0">Coordinamos la fecha de recojo en tu empresa con unidades equipadas.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h6 class="fw-bold mb-1">Gestión</h6>
+              <p class="text-muted small mb-0">Tratamos, reciclamos o disponemos los residuos de forma autorizada.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="step-num">5</div>
+            <div class="step-content">
+              <h6 class="fw-bold mb-1">Documentación</h6>
+              <p class="text-muted small mb-0">Entregamos manifiestos y certificados para tu cumplimiento ambiental.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-5 cta-section text-center">
+  <div class="container">
+    <h3 class="fw-bold text-white mb-3">¿Necesitas gestionar tus residuos?</h3>
+    <p class="text-white-75 mb-4">Solicita una evaluación gratuita. Te respondemos en menos de 24 horas.</p>
+    <a href="{{ url_for('contacto') }}" class="btn btn-light btn-lg px-5 fw-semibold text-success">
+      <i class="bi bi-envelope me-2"></i>Solicitar Evaluación Gratuita
+    </a>
+  </div>
+</section>
+
+{% endblock %}

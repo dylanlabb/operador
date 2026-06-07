@@ -1,0 +1,318 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio — Operador de Residuos S.A.C.{% endblock %}
+{% block canonical_path %}/{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero-section" id="inicio">
+  <div class="container">
+    <div class="row align-items-center g-5">
+
+      <div class="col-lg-6 text-center text-lg-start">
+        <span class="badge bg-success mb-3 px-3 py-2">Empresa B2B · Lima, Perú</span>
+        <h1 class="display-4 fw-bold text-white mb-3">
+          Gestión de Residuos &amp;<br>
+          <span class="text-success-light">Envases Industriales</span>
+        </h1>
+        <p class="lead text-white-75 mb-4">
+          Somos operadores autorizados de residuos en Lima. También compramos y vendemos
+          tanques, cilindros y bidones de segunda mano para uso industrial.
+          Atendemos empresas en todo el Perú.
+        </p>
+        <!-- #9: Solicitar Cotización como primario, Ver Productos como secundario -->
+        <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
+          <a href="{{ url_for('contacto') }}" class="btn btn-success btn-lg px-4">
+            <i class="bi bi-telephone me-2" aria-hidden="true"></i>Solicitar Cotización
+          </a>
+          <a href="{{ url_for('productos') }}" class="btn btn-outline-light btn-lg px-4">
+            <i class="bi bi-grid me-2" aria-hidden="true"></i>Ver Productos
+          </a>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="hero-products-grid">
+          {% for producto in productos %}
+          <a href="{{ url_for('productos', categoria=producto.categoria) }}"
+             class="hero-product-card">
+            {# #12: eager en la primera, lazy en el resto #}
+            <img src="{{ producto.imagen }}"
+                 alt="{{ producto.nombre }} reacondicionado — Operador de Residuos SAC"
+                 loading="{{ 'eager' if loop.first else 'lazy' }}">
+            <span>{{ producto.nombre }}</span>
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-section py-4 bg-success" id="stats">
+  <div class="container">
+    <div class="row text-center text-white g-3">
+      <div class="col-6 col-md-3">
+        <div class="stat-item">
+          <h3 class="fw-bold mb-0">+500</h3>
+          <small>Clientes atendidos</small>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-item">
+          <h3 class="fw-bold mb-0">+10 años</h3>
+          <small>De experiencia</small>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-item">
+          <h3 class="fw-bold mb-0">Lima</h3>
+          <small>y provincias</small>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-item">
+          <h3 class="fw-bold mb-0">100%</h3>
+          <small>Cumplimiento normativo</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS DESTACADOS -->
+<section class="py-6 bg-light" id="servicios">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-label">Lo que hacemos</span>
+      <h2 class="fw-bold mt-2">Nuestros Servicios</h2>
+      <p class="text-muted">Soluciones integrales de gestión de residuos para empresas en Lima y el Perú.</p>
+    </div>
+    <div class="row g-4">
+      {% for servicio in servicios %}
+      <div class="col-md-4">
+        <div class="service-card h-100 p-4">
+          <div class="service-icon mb-3">
+            <i class="bi {{ servicio.icono }}" aria-hidden="true"></i>
+          </div>
+          <h5 class="fw-bold mb-2">{{ servicio.titulo }}</h5>
+          <p class="text-muted small mb-3">{{ servicio.descripcion }}</p>
+          <a href="{{ url_for('servicios') }}" class="text-success text-decoration-none small fw-semibold">
+            Ver más <i class="bi bi-arrow-right ms-1" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="text-center mt-4 d-flex justify-content-center gap-3 flex-wrap">
+      <a href="{{ url_for('servicios') }}" class="btn btn-outline-success px-4">Ver todos los servicios</a>
+      <!-- #10: CTA cotización de servicios -->
+      <a href="{{ url_for('contacto') }}" class="btn btn-success px-4">
+        <i class="bi bi-chat-dots me-2" aria-hidden="true"></i>Solicitar cotización de servicios
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUÉ ELEGIRNOS (#8: movido antes de productos) -->
+<section class="py-6 bg-dark text-white" id="por-que-nosotros">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-5">
+        <span class="section-label-light">¿Por qué nosotros?</span>
+        <h2 class="fw-bold mt-2 mb-4">Tu aliado estratégico en gestión de residuos</h2>
+        <p class="text-white-75">
+          En <strong>Operador de Residuos S.A.C.</strong> combinamos experiencia en gestión ambiental con
+          un amplio inventario de envases industriales reutilizables. Trabajamos con empresas de todos los
+          tamaños en Lima y provincias.
+        </p>
+        <a href="{{ url_for('nosotros') }}" class="btn btn-success mt-3 px-4">Conoce nuestra empresa</a>
+      </div>
+      <div class="col-lg-7">
+        <div class="row g-3">
+          <div class="col-6">
+            <div class="feature-card-dark p-4">
+              <i class="bi bi-patch-check-fill text-success fs-3 mb-2 d-block" aria-hidden="true"></i>
+              <h6 class="fw-bold">Empresa Registrada</h6>
+              <p class="text-white-75 small mb-0">Operador de residuos registrado ante las autoridades ambientales peruanas.</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="feature-card-dark p-4">
+              <i class="bi bi-truck text-success fs-3 mb-2 d-block" aria-hidden="true"></i>
+              <h6 class="fw-bold">Recojo a Domicilio</h6>
+              <p class="text-white-75 small mb-0">Recogemos tus residuos o envases directamente en tu empresa, sin complicaciones.</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="feature-card-dark p-4">
+              <i class="bi bi-file-earmark-check text-success fs-3 mb-2 d-block" aria-hidden="true"></i>
+              <h6 class="fw-bold">Documentación Completa</h6>
+              <p class="text-white-75 small mb-0">Emitimos manifiestos, certificados y toda la documentación exigida por OEFA y MINAM.</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="feature-card-dark p-4">
+              <i class="bi bi-headset text-success fs-3 mb-2 d-block" aria-hidden="true"></i>
+              <h6 class="fw-bold">Atención Personalizada</h6>
+              <p class="text-white-75 small mb-0">Asesoría directa para cada cliente. Respondemos rápido por WhatsApp y correo.</p>
+            </div>
+          </div>
+        </div>
+        <!-- #11: Franja de credibilidad EO-RS -->
+        <div class="mt-3 py-3 px-4 rounded-3 d-flex align-items-center gap-3"
+             style="background:rgba(46,125,50,0.18); border:1px solid rgba(46,125,50,0.35);">
+          <i class="bi bi-shield-fill-check text-success fs-4 flex-shrink-0" aria-hidden="true"></i>
+          <p class="mb-0 small text-white-75">
+            Registrados ante el MINAM como <strong class="text-white">Empresa Operadora de Residuos Sólidos (EO-RS)</strong>
+            <!-- TODO: agregar N° de registro EO-RS -->
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTOS DESTACADOS (#8: movido después de Por qué elegirnos) -->
+<section class="py-6" id="productos">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-label">Compra y venta</span>
+      <h2 class="fw-bold mt-2">Envases Industriales</h2>
+      <p class="text-muted">Envases de segunda mano en buen estado para uso industrial. Stock disponible en Lima.</p>
+    </div>
+    <div class="row g-4">
+      {% for producto in productos %}
+      <div class="col-sm-6 col-lg-3">
+        <div class="product-card h-100 text-center">
+          <div class="product-img-wrap position-relative">
+            {% if producto.badge %}
+            <span class="badge bg-warning text-dark position-absolute top-0 end-0 m-2" style="z-index:1;">{{ producto.badge }}</span>
+            {% endif %}
+            {# #13: descripción completa sin truncar en HTML, #34: alt descriptivo #}
+            <img src="{{ producto.imagen }}"
+                 alt="{{ producto.nombre }} reacondicionado para uso industrial — Operador de Residuos SAC, Ventanilla"
+                 class="product-thumb-img" loading="lazy">
+          </div>
+          <div class="p-3">
+            <h6 class="fw-bold mb-2">{{ producto.nombre }}</h6>
+            <p class="text-muted small mb-3">{{ producto.descripcion }}</p>
+            <a href="{{ url_for('productos', categoria=producto.categoria) }}" class="btn btn-sm btn-outline-success">Ver detalle</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="text-center mt-4">
+      <a href="{{ url_for('productos') }}" class="btn btn-success px-5">Ver catálogo completo</a>
+    </div>
+  </div>
+</section>
+
+<!-- UBICACIÓN -->
+<section class="py-6 bg-light" id="ubicacion">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-label">Dónde estamos</span>
+      <h2 class="fw-bold mt-2">Nuestra Ubicación</h2>
+      <!-- #28: subtítulo actualizado -->
+      <p class="text-muted">Parque Industrial Pachacutec — a 15 minutos del Callao industrial.</p>
+    </div>
+    <div class="row g-4 align-items-stretch">
+      <div class="col-lg-4">
+        <div class="ubicacion-card p-4 h-100 d-flex flex-column gap-3">
+          <div class="d-flex align-items-start gap-3">
+            <div class="contact-info-icon flex-shrink-0">
+              <i class="bi bi-building text-success" aria-hidden="true"></i>
+            </div>
+            <div>
+              <h6 class="fw-bold mb-1">Dirección</h6>
+              <p class="text-muted small mb-0">MZ E2 LOTE 03</p>
+            </div>
+          </div>
+          <div class="d-flex align-items-start gap-3">
+            <div class="contact-info-icon flex-shrink-0">
+              <i class="bi bi-geo-alt-fill text-success" aria-hidden="true"></i>
+            </div>
+            <div>
+              <h6 class="fw-bold mb-1">Parque Industrial</h6>
+              <p class="text-muted small mb-0">
+                Asoc. de Empresarios y Micro y<br>
+                Pequeños Empresarios del Perú<br>
+                <strong>Parque Industrial Pachacutec</strong>
+              </p>
+            </div>
+          </div>
+          <div class="d-flex align-items-start gap-3">
+            <div class="contact-info-icon flex-shrink-0">
+              <i class="bi bi-map text-success" aria-hidden="true"></i>
+            </div>
+            <div>
+              <h6 class="fw-bold mb-1">Distrito / Región</h6>
+              <p class="text-muted small mb-0">
+                Distrito de Ventanilla<br>
+                Prov. Constitucional del Callao<br>
+                Lima — Perú
+              </p>
+            </div>
+          </div>
+          <div class="d-flex align-items-start gap-3">
+            <div class="contact-info-icon flex-shrink-0">
+              <i class="bi bi-clock-fill text-success" aria-hidden="true"></i>
+            </div>
+            <div>
+              <h6 class="fw-bold mb-1">Horario</h6>
+              <p class="text-muted small mb-0">
+                Lun–Vie: 8:00am – 6:00pm<br>
+                Sáb: 8:00am – 1:00pm
+              </p>
+            </div>
+          </div>
+          <div class="mt-auto d-flex flex-column gap-2">
+            <a href="https://maps.app.goo.gl/7XRe9aDwLDkGiN666"
+               class="btn btn-outline-success w-100" target="_blank" rel="noopener">
+              <i class="bi bi-box-arrow-up-right me-2" aria-hidden="true"></i>Abrir en Google Maps
+            </a>
+            <!-- #29: botón Cómo llegar -->
+            <a href="https://www.google.com/maps/dir/Lima/Parque+Industrial+Pachacutec,+Ventanilla,+Callao,+Peru"
+               class="btn btn-outline-secondary w-100" target="_blank" rel="noopener">
+              <i class="bi bi-signpost-split me-2" aria-hidden="true"></i>Cómo llegar
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="rounded-3 overflow-hidden shadow-sm" style="height: 100%; min-height: 380px;">
+          <iframe
+            src="https://maps.google.com/maps?q=Parque+Industrial+Pachacutec,+Ventanilla,+Callao,+Lima,+Peru&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            width="100%" height="100%" style="border:0; min-height:380px;"
+            allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Ubicación Operador de Residuos S.A.C. — Parque Industrial Pachacutec, Ventanilla">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="py-6 cta-section text-center">
+  <div class="container">
+    <h2 class="fw-bold text-white mb-3">¿Listo para trabajar juntos?</h2>
+    <p class="text-white-75 mb-4 fs-5">Cuéntanos qué necesitas y te respondemos en menos de 24 horas.</p>
+    <div class="d-flex justify-content-center flex-wrap gap-3">
+      <a href="{{ url_for('contacto') }}" class="btn btn-light btn-lg px-5 fw-semibold text-success">
+        <i class="bi bi-envelope me-2" aria-hidden="true"></i>Enviar Consulta
+      </a>
+      <a href="https://wa.me/51994229729?text=Hola%2C%20quiero%20una%20cotización." class="btn btn-success btn-lg px-5 fw-semibold" target="_blank">
+        <i class="bi bi-whatsapp me-2" aria-hidden="true"></i>WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

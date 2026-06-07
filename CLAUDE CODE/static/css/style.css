@@ -1,0 +1,488 @@
+/* ============================================================
+   OPERADOR DE RESIDUOS S.A.C. — Hoja de Estilos
+   ============================================================ */
+
+/* === VARIABLES === */
+:root {
+  --green-dark:   #1B5E20;
+  --green-main:   #2E7D32;
+  --green-light:  #4CAF50;
+  --green-pale:   #E8F5E9;
+  --dark:         #0d1117;
+  --dark-card:    #161d27;
+  --dark-soft:    #1e2a1e;   /* fondo oscuro con tinte verde para cards de imagen */
+  --border:       #E5E7EB;
+  --border-dark:  rgba(255,255,255,0.08);
+  --white:        #FFFFFF;
+  --section-pad:  5rem;
+  --font:         'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+/* === RESET Y BASE === */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  color: #1F2937;
+  padding-top: 76px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.py-6 { padding-top: var(--section-pad); padding-bottom: var(--section-pad); }
+.mb-6 { margin-bottom: var(--section-pad); }
+.mt-6 { margin-top: var(--section-pad); }
+.text-white-75 { color: rgba(255,255,255,0.80); }
+.text-success-light { color: #81C784; }
+
+/* === NAVBAR === */
+#mainNav {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.07);
+  transition: box-shadow 0.3s;
+}
+
+.navbar-logo-img {
+  height: 46px;
+  width: auto;
+  display: block;
+}
+
+.navbar-brand-text {
+  color: #1B5E20;
+  font-size: 0.88rem;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+  font-family: 'Playfair Display', Georgia, serif;
+}
+.navbar-brand-text strong { color: #1B5E20; font-weight: 800; font-family: 'Playfair Display', Georgia, serif; }
+
+.footer-logo-img {
+  height: 50px;
+  width: auto;
+  display: block;
+}
+
+#mainNav .nav-link {
+  color: #374151;
+  font-size: 0.91rem;
+  font-weight: 500;
+  padding: 0.55rem 0.85rem;
+  border-radius: 6px;
+  transition: color 0.2s, background 0.2s;
+}
+#mainNav .nav-link:hover { color: var(--green-dark); background: rgba(27,94,32,0.06); }
+#mainNav .nav-link.active { color: var(--green-dark); font-weight: 600; }
+#mainNav .btn-success {
+  background: var(--green-main);
+  border-color: var(--green-main);
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+/* === HERO === */
+.hero-section {
+  min-height: 92vh;
+  background: linear-gradient(140deg, #060e06 0%, #111827 55%, #060e06 100%);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 5rem 0;
+}
+.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 70% 40%, rgba(46,125,50,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 15% 75%, rgba(46,125,50,0.10) 0%, transparent 45%);
+  pointer-events: none;
+}
+.hero-section .container { position: relative; z-index: 1; }
+
+/* ============================================================
+   IMÁGENES DE PRODUCTOS
+
+   Las fotos de Incicar tienen fondo blanco. La solución más
+   clara: contenedor blanco/gris claro para la imagen, card body
+   oscuro para el texto. Un solo fondo por zona, sin mezclas.
+   ============================================================ */
+
+/* --- Grid de productos en el hero (sobre fondo oscuro) --- */
+.hero-products-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.hero-product-card {
+  background: rgba(255,255,255,0.93);   /* blanco semitransparente sobre el hero oscuro */
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 14px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: transform 0.25s, box-shadow 0.25s;
+  display: block;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+}
+.hero-product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 32px rgba(0,0,0,0.35);
+}
+.hero-product-card img {
+  width: 100%;
+  height: 100px;
+  object-fit: contain;
+  display: block;
+  padding: 0.75rem;
+  background: #fff;                     /* un solo fondo blanco, la imagen flota limpia */
+}
+.hero-product-card span {
+  display: block;
+  font-size: 0.72rem;
+  color: #1e3a1e;
+  text-align: center;
+  padding: 0.4rem 0.6rem 0.65rem;
+  font-weight: 600;
+  background: #f0f7f0;
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+
+/* --- Cards de productos en la página de inicio --- */
+.product-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.product-card:hover {
+  box-shadow: 0 8px 32px rgba(46,125,50,0.14);
+  transform: translateY(-4px);
+}
+
+.product-img-wrap {
+  background: #f4f8f4;                  /* gris-verde muy suave, un solo fondo */
+  overflow: hidden;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+.product-thumb-img {
+  width: 100%;
+  height: 160px;
+  object-fit: contain;
+  padding: 1.25rem;
+  display: block;
+  transition: transform 0.3s;
+}
+.product-card:hover .product-thumb-img { transform: scale(1.05); }
+
+/* --- Cards de detalle en el catálogo --- */
+.product-detail-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.2s;
+  position: relative;
+}
+.product-detail-card:hover {
+  box-shadow: 0 12px 40px rgba(46,125,50,0.14);
+  transform: translateY(-4px);
+}
+
+.product-detail-header {
+  background: #f4f8f4;                  /* un solo fondo claro, limpio */
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  position: relative;
+  overflow: hidden;
+}
+.product-detail-img {
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+  padding: 1.75rem;
+  display: block;
+  transition: transform 0.3s;
+}
+.product-detail-card:hover .product-detail-img { transform: scale(1.04); }
+
+/* === STATS === */
+.stats-section { background: var(--green-main); }
+.stat-item h3 { font-size: 1.6rem; font-weight: 800; }
+
+/* === SECTION LABELS === */
+.section-label {
+  display: inline-block;
+  background: var(--green-pale);
+  color: var(--green-dark);
+  font-size: 0.73rem;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.85rem;
+  border-radius: 999px;
+}
+.section-label-light {
+  display: inline-block;
+  background: rgba(76,175,80,0.15);
+  color: #81C784;
+  font-size: 0.73rem;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.85rem;
+  border-radius: 999px;
+}
+
+/* === SERVICE CARDS === */
+.service-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.service-card:hover {
+  box-shadow: 0 8px 30px rgba(46,125,50,0.12);
+  transform: translateY(-4px);
+}
+.service-icon {
+  width: 56px; height: 56px;
+  background: var(--green-pale);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+}
+.service-icon i { font-size: 1.6rem; color: var(--green-main); }
+.service-icon-large {
+  width: 160px; height: 160px;
+  background: var(--green-pale);
+  border-radius: 40px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto;
+}
+.service-icon-large i { font-size: 4.5rem; color: var(--green-main); }
+
+/* === FEATURE CARDS DARK === */
+.feature-card-dark {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 14px;
+  transition: background 0.2s;
+}
+.feature-card-dark:hover { background: rgba(46,125,50,0.16); }
+
+/* === ABOUT / STAT CARDS === */
+.about-stat-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: box-shadow 0.2s;
+}
+.about-stat-card:hover { box-shadow: 0 4px 20px rgba(46,125,50,0.10); }
+
+/* === MISSION / VISION === */
+.mission-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: box-shadow 0.2s;
+}
+.mission-card:hover { box-shadow: 0 8px 30px rgba(46,125,50,0.10); }
+
+/* === VALORES === */
+.value-item { border-radius: 14px; transition: background 0.2s; }
+.value-item:hover { background: var(--green-pale); }
+
+/* === PROCESO === */
+.process-steps { display: flex; flex-direction: column; gap: 1.5rem; }
+.process-step { display: flex; align-items: flex-start; gap: 1.25rem; }
+.step-num {
+  width: 40px; height: 40px;
+  background: var(--green-main);
+  color: #fff;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-size: 0.9rem;
+}
+.step-content { padding-top: 0.5rem; }
+
+/* === NORM CARDS === */
+.norm-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: box-shadow 0.2s;
+}
+.norm-card:hover { box-shadow: 0 4px 20px rgba(46,125,50,0.10); }
+
+/* === CTA === */
+.cta-section {
+  background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-main) 100%);
+}
+
+/* === PAGE HEADER === */
+.page-header {
+  background: linear-gradient(135deg, #060e06 0%, #111827 100%);
+  padding: 3rem 0 2.5rem;
+}
+.page-header .breadcrumb-item + .breadcrumb-item::before { color: rgba(255,255,255,0.40); }
+
+/* === CONTACT === */
+.contact-form .form-control,
+.contact-form .form-select {
+  border-color: var(--border);
+  border-radius: 8px;
+  padding: 0.65rem 0.9rem;
+  font-size: 0.93rem;
+}
+.contact-form .form-control:focus,
+.contact-form .form-select:focus {
+  border-color: var(--green-main);
+  box-shadow: 0 0 0 0.2rem rgba(46,125,50,0.15);
+}
+.contact-info-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.contact-info-icon {
+  width: 40px; height: 40px;
+  background: var(--green-pale);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+/* === UBICACIÓN === */
+.ubicacion-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+.map-container { border: 1px solid var(--border); }
+
+/* === STICKY FILTER === */
+.sticky-filter { position: sticky; top: 76px; z-index: 100; }
+
+/* === BUY DISPLAY === */
+.buy-icon-display {
+  background: var(--green-pale);
+  border-radius: 24px;
+  padding: 3rem;
+  display: inline-block;
+}
+.buy-icon-display i { font-size: 5rem; }
+
+/* === FOOTER === */
+.footer-dark {
+  background: #060e06;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer-heading { color: #ffffff; font-weight: 600; }
+.footer-text { color: rgba(255,255,255,0.55); }
+.footer-list { margin: 0; padding: 0; }
+.footer-list li { color: rgba(255,255,255,0.55); font-size: 0.875rem; }
+.footer-link {
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.2s;
+}
+.footer-link:hover { color: var(--green-light); }
+.footer-social {
+  color: rgba(255,255,255,0.50);
+  font-size: 1.25rem;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-social:hover { color: #fff; }
+.footer-social--wa { color: #25D366 !important; }
+.footer-divider { border-color: rgba(255,255,255,0.08); }
+.footer-bottom { color: rgba(255,255,255,0.40); font-size: 0.82rem; }
+.footer-bottom p { color: rgba(255,255,255,0.40); }
+.footer-cta-strip { background: rgba(46,125,50,0.12); border: 1px solid rgba(46,125,50,0.25); }
+.footer-cert-strip { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); }
+
+/* === WHATSAPP FLOTANTE === */
+.whatsapp-float {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background: #25D366;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #fff;
+  font-size: 1.5rem;
+  padding: 0.75rem 1.1rem;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.40);
+  z-index: 9999;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.whatsapp-float:hover {
+  transform: scale(1.06);
+  box-shadow: 0 6px 28px rgba(37,211,102,0.60);
+  color: #fff;
+}
+.whatsapp-float__label { font-size: 0.88rem; font-weight: 600; }
+
+/* ============================================================
+   RESPONSIVE — MOBILE
+   ============================================================ */
+
+@media (max-width: 575.98px) {
+  body { padding-top: 68px; }
+  .hero-section { min-height: auto; padding: 4rem 0 3rem; }
+  .hero-products-grid { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+  .hero-product-card img { height: 72px; }
+
+  h1.display-4 { font-size: 1.7rem; line-height: 1.25; }
+  h2 { font-size: 1.4rem; }
+
+  .py-6 { padding-top: 2.75rem; padding-bottom: 2.75rem; }
+
+  .btn-lg { padding: 0.85rem 1.5rem; font-size: 1rem; }
+
+  .whatsapp-float { bottom: 1rem; right: 1rem; padding: 0.85rem; border-radius: 50%; }
+  .whatsapp-float__label { display: none; }
+
+  .product-thumb-img { height: 120px; }
+  .product-detail-img { height: 170px; }
+
+  .sticky-filter .d-flex {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 0.4rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  .sticky-filter .btn { white-space: nowrap; flex-shrink: 0; }
+
+  #navMenu {
+    background: #ffffff;
+    border-top: 1px solid #e5e7eb;
+    margin-top: 0.5rem;
+    border-radius: 12px;
+    padding: 0.5rem;
+  }
+  #navMenu .nav-link { padding: 0.75rem 1rem; font-size: 1rem; color: #374151; }
+  #navMenu .btn-success { margin-top: 0.5rem; text-align: center; display: block; }
+
+  .service-icon-large { width: 100px; height: 100px; }
+  .service-icon-large i { font-size: 2.8rem; }
+
+  .step-num { width: 34px; height: 34px; font-size: 0.8rem; }
+}
+
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .hero-section { min-height: 75vh; padding: 4rem 0; }
+  .py-6 { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+  .whatsapp-float__label { display: none; }
+  .whatsapp-float { padding: 0.85rem; border-radius: 50%; }
+}

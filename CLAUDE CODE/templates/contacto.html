@@ -1,0 +1,347 @@
+{% extends "base.html" %}
+
+{% block title %}Contacto — Operador de Residuos S.A.C.{% endblock %}
+
+{% block content %}
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ url_for('index') }}" class="text-white-75">Inicio</a></li>
+        <li class="breadcrumb-item active text-white">Contacto</li>
+      </ol>
+    </nav>
+    <h1 class="fw-bold text-white mb-2">Contáctanos</h1>
+    <p class="text-white-75 mb-0">Estamos listos para atenderte. Respuesta en menos de 24 horas.</p>
+  </div>
+</section>
+
+<!-- CONTACTO MAIN -->
+<section class="py-6">
+  <div class="container">
+    <div class="row g-5">
+
+      <!-- FORMULARIO -->
+      <div class="col-lg-7">
+        <h4 class="fw-bold mb-4">Envíanos un mensaje</h4>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+              <i class="bi {% if category == 'success' %}bi-check-circle-fill{% else %}bi-exclamation-circle-fill{% endif %} me-2"></i>
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="{{ url_for('contacto') }}" class="contact-form" id="contactForm" novalidate>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="nombre" class="form-label fw-semibold small">Nombre completo <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="nombre" name="nombre"
+                     placeholder="Ej: Juan Pérez" required>
+              <div class="invalid-feedback">Por favor ingresa tu nombre completo.</div>
+            </div>
+            <div class="col-md-6">
+              <label for="empresa" class="form-label fw-semibold small">Empresa</label>
+              <input type="text" class="form-control" id="empresa" name="empresa"
+                     placeholder="Nombre de tu empresa">
+            </div>
+            <div class="col-sm-6 col-md-4">
+              <label for="email" class="form-label fw-semibold small">Correo electrónico <span class="text-danger">*</span></label>
+              <input type="email" class="form-control" id="email" name="email"
+                     placeholder="correo@empresa.com" required>
+              <div class="invalid-feedback">Ingresa un correo electrónico válido.</div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+              <label for="telefono" class="form-label fw-semibold small">Teléfono / WhatsApp</label>
+              <input type="tel" class="form-control" id="telefono" name="telefono"
+                     placeholder="+51 994 229 729">
+              <div class="invalid-feedback">Ingresa un número de teléfono válido.</div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+              <label for="ubicacion" class="form-label fw-semibold small">Distrito / Ciudad</label>
+              <input type="text" class="form-control" id="ubicacion" name="ubicacion"
+                     list="distritos-list" placeholder="Ej: Miraflores, San Isidro…" autocomplete="off">
+              <datalist id="distritos-list">
+                <option value="Ventanilla">
+                <option value="Callao">
+                <option value="Bellavista">
+                <option value="La Perla">
+                <option value="San Miguel">
+                <option value="Breña">
+                <option value="La Victoria">
+                <option value="El Agustino">
+                <option value="Rímac">
+                <option value="Cercado de Lima">
+                <option value="Jesús María">
+                <option value="Lince">
+                <option value="Magdalena del Mar">
+                <option value="Pueblo Libre">
+                <option value="Miraflores">
+                <option value="San Isidro">
+                <option value="Surquillo">
+                <option value="San Borja">
+                <option value="Surco">
+                <option value="Barranco">
+                <option value="Chorrillos">
+                <option value="La Molina">
+                <option value="Ate">
+                <option value="Santa Anita">
+                <option value="San Juan de Lurigancho">
+                <option value="Los Olivos">
+                <option value="Independencia">
+                <option value="Comas">
+                <option value="Puente Piedra">
+                <option value="Villa El Salvador">
+                <option value="Villa María del Triunfo">
+                <option value="San Juan de Miraflores">
+                <option value="Lurín">
+                <option value="Pachacamac">
+                <option value="Provincia">
+              </datalist>
+            </div>
+            <div class="col-12">
+              <label for="asunto" class="form-label fw-semibold small">Asunto <span class="text-danger">*</span></label>
+              <select class="form-select" id="asunto" name="asunto" required>
+                <option value="" disabled selected>Selecciona un asunto...</option>
+                <optgroup label="Servicios">
+                  <option value="Gestión de residuos">Servicio de gestión de residuos</option>
+                  <option value="Transporte de residuos">Servicio de transporte de residuos</option>
+                  <option value="Disposición final">Disposición final de residuos</option>
+                </optgroup>
+                <optgroup label="Envases industriales">
+                  <option value="Cotización de envases">Cotización de envases (IBC, cilindros, bidones)</option>
+                  <option value="Venta de envases usados">Quiero vender mis envases usados</option>
+                </optgroup>
+                <option value="Información general">Información general</option>
+                <option value="Otro">Otro</option>
+              </select>
+              <div class="invalid-feedback">Selecciona un asunto.</div>
+            </div>
+            <div class="col-12">
+              <label for="mensaje" class="form-label fw-semibold small">Mensaje <span class="text-danger">*</span></label>
+              <textarea class="form-control" id="mensaje" name="mensaje" rows="5"
+                        placeholder="Describe lo que necesitas: tipo de residuo, cantidad aproximada, ubicación, etc." required></textarea>
+              <div class="invalid-feedback">El mensaje debe tener al menos 10 caracteres.</div>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-success btn-lg px-5 w-100" id="submitBtn">
+                <i class="bi bi-send me-2" aria-hidden="true"></i>Enviar Mensaje
+              </button>
+              <p class="text-muted small text-center mt-2 mb-0">
+                <i class="bi bi-clock me-1" aria-hidden="true"></i>
+                Respondemos en menos de 4 horas hábiles · Lun–Vie 8am–6pm
+              </p>
+            </div>
+            <div class="col-12">
+              <div class="d-flex align-items-center gap-3 my-1">
+                <hr class="flex-grow-1">
+                <span class="text-muted small">o también</span>
+                <hr class="flex-grow-1">
+              </div>
+              <a href="https://wa.me/51994229729?text=Hola%2C%20quiero%20hacer%20una%20consulta%20sobre%20sus%20servicios."
+                 class="btn btn-outline-success w-100" target="_blank">
+                <i class="bi bi-whatsapp me-2" aria-hidden="true"></i>Escríbenos directamente por WhatsApp
+              </a>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- INFO DE CONTACTO -->
+      <div class="col-lg-5">
+        <h4 class="fw-bold mb-4">Información de contacto</h4>
+
+        <div class="contact-info-card p-4 mb-3">
+          <div class="d-flex align-items-start gap-3">
+            <div class="contact-info-icon">
+              <i class="bi bi-geo-alt-fill text-success"></i>
+            </div>
+            <div>
+              <h6 class="fw-bold mb-1">Ubicación</h6>
+              <p class="text-muted small mb-0">
+                MZ E2 LOTE 03 — Parque Industrial Pachacutec<br>
+                Distrito de Ventanilla, Prov. Constitucional del Callao<br>
+                Lima, Perú
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-info-card p-4 mb-3">
+          <div class="d-flex align-items-start gap-3">
+            <div class="contact-info-icon">
+              <i class="bi bi-envelope-fill text-success"></i>
+            </div>
+            <div>
+              <h6 class="fw-bold mb-1">Correo electrónico</h6>
+              <a href="mailto:ventas@operadorderesiduos.com.pe" class="text-muted small text-decoration-none">
+                ventas@operadorderesiduos.com.pe
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-info-card p-4 mb-3">
+          <div class="d-flex align-items-start gap-3">
+            <div class="contact-info-icon">
+              <i class="bi bi-whatsapp text-success"></i>
+            </div>
+            <div>
+              <h6 class="fw-bold mb-1">WhatsApp</h6>
+              <a href="https://wa.me/51994229729" class="text-muted small text-decoration-none" target="_blank">
+                +51 994 229 729
+              </a>
+              <p class="text-muted small mb-0">Respuesta rápida en horario de atención</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-info-card p-4 mb-4">
+          <div class="d-flex align-items-start gap-3">
+            <div class="contact-info-icon">
+              <i class="bi bi-clock-fill text-success"></i>
+            </div>
+            <div>
+              <h6 class="fw-bold mb-1">Horario de atención</h6>
+              <p class="text-muted small mb-0">
+                Lunes a Viernes: 8:00am – 6:00pm<br>
+                Sábados: 8:00am – 1:00pm
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- WHATSAPP DIRECTO -->
+        <a href="https://wa.me/51994229729?text=Hola%2C%20me%20interesa%20más%20información%20sobre%20sus%20productos%20y%20servicios."
+           class="btn btn-success w-100 btn-lg" target="_blank">
+          <i class="bi bi-whatsapp me-2"></i>Escríbenos por WhatsApp
+        </a>
+
+        <p class="text-muted small text-center mt-3">
+          <i class="bi bi-lightning-fill text-warning me-1"></i>
+          Atendemos consultas por WhatsApp de forma inmediata
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UBICACIÓN Y MAPA -->
+<section class="py-6 bg-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-label">Cómo llegar</span>
+      <h4 class="fw-bold mt-2">Nuestra Ubicación</h4>
+    </div>
+    <div class="row g-4 align-items-start">
+      <!-- Dirección detallada -->
+      <div class="col-lg-4">
+        <div class="ubicacion-card p-4 h-100">
+          <div class="mb-4">
+            <div class="d-flex align-items-start gap-3 mb-3">
+              <div class="contact-info-icon flex-shrink-0">
+                <i class="bi bi-building text-success"></i>
+              </div>
+              <div>
+                <h6 class="fw-bold mb-1">Dirección</h6>
+                <p class="text-muted small mb-0">MZ E2 LOTE 03</p>
+              </div>
+            </div>
+            <div class="d-flex align-items-start gap-3 mb-3">
+              <div class="contact-info-icon flex-shrink-0">
+                <i class="bi bi-geo-alt-fill text-success"></i>
+              </div>
+              <div>
+                <h6 class="fw-bold mb-1">Zona Industrial</h6>
+                <p class="text-muted small mb-0">
+                  Asoc. de Empresarios y Micro y Pequeños Empresarios del Perú<br>
+                  <strong>Parque Industrial Pachacutec</strong>
+                </p>
+              </div>
+            </div>
+            <div class="d-flex align-items-start gap-3 mb-3">
+              <div class="contact-info-icon flex-shrink-0">
+                <i class="bi bi-map text-success"></i>
+              </div>
+              <div>
+                <h6 class="fw-bold mb-1">Distrito / Provincia</h6>
+                <p class="text-muted small mb-0">
+                  Distrito de Ventanilla<br>
+                  Provincia Constitucional del Callao<br>
+                  Región Lima — Perú
+                </p>
+              </div>
+            </div>
+          </div>
+          <a href="https://maps.app.goo.gl/7XRe9aDwLDkGiN666"
+             class="btn btn-outline-success w-100" target="_blank">
+            <i class="bi bi-box-arrow-up-right me-2"></i>Abrir en Google Maps
+          </a>
+        </div>
+      </div>
+      <!-- Mapa interactivo -->
+      <div class="col-lg-8">
+        <div class="map-container rounded-3 overflow-hidden shadow-sm">
+          <iframe
+            src="https://maps.google.com/maps?q=Parque+Industrial+Pachacutec,+Ventanilla,+Callao,+Lima,+Peru&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            width="100%" height="420" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade" title="Ubicación Operador de Residuos SAC">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function () {
+  var form = document.getElementById('contactForm');
+  if (!form) return;
+
+  var validators = {
+    nombre:  { check: function(v){ return v.trim().length >= 2; } },
+    email:   { check: function(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()); } },
+    telefono:{ check: function(v){ return !v.trim() || /^[\d\s\+\-\(\)]{7,}$/.test(v.trim()); } },
+    asunto:  { check: function(v){ return v !== ''; } },
+    mensaje: { check: function(v){ return v.trim().length >= 10; } }
+  };
+
+  Object.keys(validators).forEach(function(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('blur', function() {
+      var ok = validators[id].check(el.value);
+      el.classList.toggle('is-invalid', !ok);
+      el.classList.toggle('is-valid', ok && el.value.trim() !== '');
+    });
+  });
+
+  form.addEventListener('submit', function(e) {
+    var valid = true;
+    Object.keys(validators).forEach(function(id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      var ok = validators[id].check(el.value);
+      el.classList.toggle('is-invalid', !ok);
+      if (!ok) valid = false;
+    });
+    if (!valid) { e.preventDefault(); return; }
+    var btn = document.getElementById('submitBtn');
+    if (btn) {
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Enviando…';
+    }
+  });
+})();
+</script>
+{% endblock %}
